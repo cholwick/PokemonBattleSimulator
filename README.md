@@ -31,14 +31,15 @@ PokemonBattleSimulator/
 ├── Trainer.cs                    # Trainer class (composition: List<Pokeball> belt, exception handling)
 ├── Program.cs                    # Main entry point with the interactive battle loop
 │
-├── Cheatsheet_Opdracht_1.md      # Opdracht 1 Cheatsheet (English, 100+ words)
-├── Cheatsheet_Opdracht_1_NL.md   # Opdracht 1 Cheatsheet (Nederlands - voorbereiding mondeling)
-├── Cheatsheet_Opdracht_2.md      # Opdracht 2 Cheatsheet (English, 100+ words)
-├── Cheatsheet_Opdracht_2_NL.md   # Opdracht 2 Cheatsheet (Nederlands - voorbereiding mondeling)
+├── Cheatsheets/
+│   ├── Cheatsheet_Opdracht_1.md      # Opdracht 1 Cheatsheet (English, 100+ words)
+│   ├── Cheatsheet_Opdracht_1_NL.md   # Opdracht 1 Cheatsheet (Nederlands - voorbereiding mondeling)
+│   ├── Cheatsheet_Opdracht_2.md      # Opdracht 2 Cheatsheet (English, 100+ words)
+│   └── Cheatsheet_Opdracht_2_NL.md   # Opdracht 2 Cheatsheet (Nederlands - voorbereiding mondeling)
 │
-├── PokemonBattleSimulator.csproj # .NET 10 project file
-├── PokemonBattleSimulator.slnx   # Visual Studio solution file
-└── .gitignore                    # Excludes build artifacts (bin/, obj/, .vs/)
+├── PokemonBattleSimulator.csproj     # .NET 10 project file
+├── PokemonBattleSimulator.slnx       # Visual Studio solution file
+└── .gitignore                        # Excludes build artifacts (bin/, obj/, .vs/)
 ```
 
 ---
@@ -72,5 +73,5 @@ dotnet run
 ## 📚 Cheatsheets & Theory
 
 Detailed explanations and required question answers are available in both English (for assignment hand-in) and Dutch (for oral exams):
-- 🇬🇧 [Opdracht 1 Cheatsheet (EN)](Cheatsheet_Opdracht_1.md) | 🇳🇱 [Opdracht 1 Cheatsheet (NL)](Cheatsheet_Opdracht_1_NL.md)
-- 🇬🇧 [Opdracht 2 Cheatsheet (EN)](Cheatsheet_Opdracht_2.md) | 🇳🇱 [Opdracht 2 Cheatsheet (NL)](Cheatsheet_Opdracht_2_NL.md)
+- 🇬🇧 [Opdracht 1 Cheatsheet (EN)](Cheatsheets/Cheatsheet_Opdracht_1.md) | 🇳🇱 [Opdracht 1 Cheatsheet (NL)](Cheatsheets/Cheatsheet_Opdracht_1_NL.md)
+- 🇬🇧 [Opdracht 2 Cheatsheet (EN)](Cheatsheets/Cheatsheet_Opdracht_2.md) | 🇳🇱 [Opdracht 2 Cheatsheet (NL)](Cheatsheets/Cheatsheet_Opdracht_2_NL.md)
