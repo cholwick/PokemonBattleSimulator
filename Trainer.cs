@@ -29,16 +29,16 @@ public class Trainer
         try
         {
             // 2 Charmanders
-            AddPokeball(new Pokeball(new Charmander($"{Name}'s Charmander #1")));
-            AddPokeball(new Pokeball(new Charmander($"{Name}'s Charmander #2")));
+            AddPokeball(new Pokeball(new Charmander("Charmander #1")));
+            AddPokeball(new Pokeball(new Charmander("Charmander #2")));
 
             // 2 Squirtles
-            AddPokeball(new Pokeball(new Squirtle($"{Name}'s Squirtle #1")));
-            AddPokeball(new Pokeball(new Squirtle($"{Name}'s Squirtle #2")));
+            AddPokeball(new Pokeball(new Squirtle("Squirtle #1")));
+            AddPokeball(new Pokeball(new Squirtle("Squirtle #2")));
 
             // 2 Bulbasaurs
-            AddPokeball(new Pokeball(new Bulbasaur($"{Name}'s Bulbasaur #1")));
-            AddPokeball(new Pokeball(new Bulbasaur($"{Name}'s Bulbasaur #2")));
+            AddPokeball(new Pokeball(new Bulbasaur("Bulbasaur #1")));
+            AddPokeball(new Pokeball(new Bulbasaur("Bulbasaur #2")));
         }
         catch (Exception ex)
         {

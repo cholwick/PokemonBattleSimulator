@@ -32,14 +32,17 @@ PokemonBattleSimulator/
 ├── Bulbasaur.cs                  # Bulbasaur subclass (: Pokemon)
 ├── Pokeball.cs                   # Pokeball class (can hold any Pokemon)
 ├── Trainer.cs                    # Trainer class (holds belt with 2 of each of the 3 Pokemon)
-├── Program.cs                    # Main entry point with the interactive battle loop
+├── Battle.cs                     # Battle class (Rock-Paper-Scissors rounds, random pokeball picks, bonus rules)
+├── Arena.cs                      # Arena class (static scoreboard tracking total battles and rounds)
+├── Program.cs                    # Main entry point (uses Arena via composition)
 │
 ├── Cheatsheets/
 │   ├── Cheatsheet_Opdracht_1.md      # Opdracht 1 Cheatsheet (English, 100+ words)
 │   ├── Cheatsheet_Opdracht_1_NL.md   # Opdracht 1 Cheatsheet (Nederlands)
 │   ├── Cheatsheet_Opdracht_2.md      # Opdracht 2 Cheatsheet (English, 100+ words)
 │   ├── Cheatsheet_Opdracht_2_NL.md   # Opdracht 2 Cheatsheet (Nederlands)
-│   └── Cheatsheet_Opdracht_3.md      # Opdracht 3 Cheatsheet (English, 100+ words)
+│   ├── Cheatsheet_Opdracht_3.md      # Opdracht 3 Cheatsheet (English, 100+ words)
+│   └── Cheatsheet_Opdracht_4.md      # Opdracht 4 Cheatsheet (English, 100+ words - Static methods & variables)
 │
 ├── PokemonBattleSimulator.csproj     # .NET 10 project file
 ├── PokemonBattleSimulator.slnx       # Visual Studio solution file
@@ -66,11 +69,12 @@ dotnet run
 
 | Concept | Explanation | Where to find it |
 | :--- | :--- | :--- |
+| **Static Variables & Methods** | `Arena` maintains static score counters and scoreboard methods shared across all games. | `Arena.cs` |
+| **Composition** | `Arena` contains a `Battle`; `Trainer` contains `Pokeball`s; `Pokeball` contains a `Pokemon`. | `Arena.cs`, `Trainer.cs`, `Pokeball.cs` |
 | **Abstract Class & Inheritance** | `Pokemon` is an abstract base class; `Charmander`, `Squirtle`, and `Bulbasaur` inherit from it using `: base(...)`. | `Pokemon.cs`, `Charmander.cs`, etc. |
 | **Polymorphism** | `BattleCry()` is declared abstract and overridden in each subclass. `Pokeball` and `Trainer` work with generic `Pokemon`. | `Pokemon.cs`, `Pokeball.cs`, `Program.cs` |
-| **Composition** | An object containing other objects as fields/properties. | `Trainer` *has-a* `List<Pokeball>`, and `Pokeball` *has-a* `Pokemon`. |
-| **Collections (`List<T>`)** | Dynamic list used instead of fixed arrays for the trainer's belt. | `Trainer.cs` (`List<Pokeball> Belt`) |
-| **Exception Handling** | Using `throw`, `try`, and `catch` to handle illegal operations. | `Trainer.cs` throws when belt > 6; `Program.cs` catches it. |
+| **Collections (`List<T>`)** | Dynamic list used instead of fixed arrays for the trainer's belt and random pokeball picks. | `Trainer.cs`, `Battle.cs` |
+| **Exception Handling** | Using `throw`, `try`, and `catch` to handle illegal operations. | `Trainer.cs` throws when belt > 6. |
 
 ---
 
@@ -80,3 +84,4 @@ Detailed English explanations (min. 100 words each for assignment hand-in):
 - 🇬🇧 [Opdracht 1 Cheatsheet (EN)](Cheatsheets/Cheatsheet_Opdracht_1.md)
 - 🇬🇧 [Opdracht 2 Cheatsheet (EN)](Cheatsheets/Cheatsheet_Opdracht_2.md)
 - 🇬🇧 [Opdracht 3 Cheatsheet (EN)](Cheatsheets/Cheatsheet_Opdracht_3.md)
+- 🇬🇧 [Opdracht 4 Cheatsheet (EN)](Cheatsheets/Cheatsheet_Opdracht_4.md)

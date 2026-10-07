@@ -7,87 +7,43 @@ public static class Program
     public static void Main(string[] args)
     {
         bool keepPlaying = true;
+        // Instantiate the Arena (Battle is NOT used directly in Main!)
+        Arena arena = new Arena();
 
         while (keepPlaying)
         {
-            // 1. The player starts the game.
             try { if (!Console.IsOutputRedirected) Console.Clear(); } catch { }
             Console.WriteLine("=================================================");
-            Console.WriteLine("       POKÉMON BATTLE SIMULATOR (OOP EDITION)    ");
+            Console.WriteLine("       POKÉMON BATTLE SIMULATOR - ARENA          ");
             Console.WriteLine("=================================================");
 
-            // 2. The player gives a name to the first trainer.
+            // 1. Enter names for the two trainers
             Console.Write("\nEnter a name for the FIRST trainer (default: Ash): ");
             string? name1 = Console.ReadLine()?.Trim();
             if (string.IsNullOrWhiteSpace(name1)) name1 = "Ash";
             Trainer trainer1 = new Trainer(name1);
 
-            // 3. The player gives a name to the second trainer.
             Console.Write("Enter a name for the SECOND trainer (default: Gary): ");
             string? name2 = Console.ReadLine()?.Trim();
             if (string.IsNullOrWhiteSpace(name2)) name2 = "Gary";
             Trainer trainer2 = new Trainer(name2);
 
-            // Optional demonstration of Error Handling (try-catch with Exception)
-            Console.WriteLine("\n[System Check] Testing belt capacity exception handling...");
-            try
-            {
-                Pokeball extraBall = new Pokeball(new Charmander("Extra"));
-                trainer1.AddPokeball(extraBall); // Should throw Exception because belt already has 6!
-            }
-            catch (Exception ex)
-            {
-                Console.ForegroundColor = ConsoleColor.Yellow;
-                Console.WriteLine($"[Expected Exception Caught]: {ex.Message}");
-                Console.ResetColor();
-            }
-
-            Console.WriteLine("\nPress Enter to begin the battle rounds between the two trainers...");
+            Console.WriteLine("\nPress Enter to enter the Arena and start the battle...");
             Console.ReadLine();
 
-            // Loop through all 6 Pokeballs on the belt
-            // (2 Charmanders, 2 Squirtles, 2 Bulbasaurs)
-            for (int i = 0; i < 6; i++)
-            {
-                Console.WriteLine($"\n================== [ ROUND {i + 1} / 6 ] ==================");
+            // 2. Start battle through the Arena (using composition, NOT Battle directly!)
+            arena.StartBattle(trainer1, trainer2);
 
-                // 4. The first trainer throws the pokeball on its belt.
-                Pokemon? pokemon1 = trainer1.ThrowPokeball(i);
-
-                // 5. The pokeball released the pokemon and it does its battle cry (Polymorphism!).
-                if (pokemon1 != null)
-                {
-                    pokemon1.BattleCry();
-                }
-
-                // 6. The second trainer throws the pokeball on its belt.
-                Pokemon? pokemon2 = trainer2.ThrowPokeball(i);
-
-                // 7. The pokeball released the pokemon and it does its battle cry (Polymorphism!).
-                if (pokemon2 != null)
-                {
-                    pokemon2.BattleCry();
-                }
-
-                // 8. The first trainer returns the pokemon back to its pokeball.
-                trainer1.ReturnPokemon(i);
-
-                // 9. The second trainer returns the pokemon back to its pokeball.
-                trainer2.ReturnPokemon(i);
-
-                Console.WriteLine("-------------------------------------------------");
-            }
-
-            Console.WriteLine("\nAll Pokeballs on both belts have been used!");
-
-            // The player can quit or restart the game.
-            Console.Write("\nWould you like to restart the game? (yes/no): ");
+            // 3. Ask player to restart or quit
+            Console.Write("\nWould you like to fight another battle in the Arena? (yes/no): ");
             string? choice = Console.ReadLine()?.Trim().ToLower();
 
             if (choice != "yes" && choice != "y")
             {
                 keepPlaying = false;
-                Console.WriteLine("\nThanks for playing! Goodbye!");
+                Console.WriteLine("\nThank you for battling in the Arena! Final Stats:");
+                Arena.ShowScoreboard();
+                Console.WriteLine("Goodbye!");
             }
         }
     }
