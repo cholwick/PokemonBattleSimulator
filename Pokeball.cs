@@ -1,16 +1,19 @@
 namespace PokemonBattleSimulator;
 
 /// <summary>
-/// Pokeball class
+/// Pokeball class.
 /// 
-/// Can hold any Pokemon (Charmander, Squirtle, Bulbasaur) using polymorphism.
+/// Encapsulation improvements:
+/// - Marked as 'sealed' so no subclasses can be created.
+/// - ContainedPokemon has only a getter (immutable once assigned in constructor).
+/// - IsOpen has a private setter so it can only be modified through Throw() and Return().
 /// </summary>
-public class Pokeball
+public sealed class Pokeball
 {
-    // A pokeball can contain any Pokemon subclass (or null if empty)
-    public Pokemon? ContainedPokemon { get; private set; }
+    // Immutable reference to the Pokemon: cannot be changed once assigned
+    public Pokemon? ContainedPokemon { get; }
 
-    // Tracks if the pokeball is open or closed
+    // Read-only from outside, only modified through Throw() and Return()
     public bool IsOpen { get; private set; }
 
     public Pokeball(Pokemon? pokemon = null)
@@ -20,7 +23,7 @@ public class Pokeball
     }
 
     /// <summary>
-    /// Throws the pokeball, opening it and releasing the Pokemon inside.
+    /// Throws the pokeball, opening it and releasing the Pokemon.
     /// </summary>
     public Pokemon? Throw()
     {
@@ -37,15 +40,11 @@ public class Pokeball
     }
 
     /// <summary>
-    /// Returns the Pokemon back into the pokeball, closing it again.
+    /// Closes the pokeball on the assigned Pokemon.
+    /// Does NOT allow reassigning or replacing the Pokemon inside.
     /// </summary>
-    public void Return(Pokemon? pokemon = null)
+    public void Return()
     {
-        if (pokemon != null)
-        {
-            ContainedPokemon = pokemon;
-        }
-
         IsOpen = false;
 
         if (ContainedPokemon != null)

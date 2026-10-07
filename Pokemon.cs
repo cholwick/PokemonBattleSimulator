@@ -3,20 +3,19 @@ namespace PokemonBattleSimulator;
 /// <summary>
 /// Abstract base class for all Pokémon.
 /// 
-/// Requirements:
-/// - Nickname, Strength, Weakness fields/properties.
-/// - Parent constructor for all fields.
-/// - BattleCry must be an abstract method (implemented by each subclass).
+/// Encapsulation improvements:
+/// - Fields are hidden behind read-only properties (getters only).
+/// - Values cannot be modified once the object is constructed.
+/// - Uses ElementType enum instead of plain strings.
 /// </summary>
 public abstract class Pokemon
 {
-    // Common fields for all Pokémon
-    public string Nickname;
-    public string Strength;
-    public string Weakness;
+    // Encapsulated properties with getters only (immutable once created)
+    public string Nickname { get; }
+    public ElementType Strength { get; }
+    public ElementType Weakness { get; }
 
-    // Parent constructor used by subclasses via : base(...)
-    public Pokemon(string nickname, string strength, string weakness)
+    protected Pokemon(string nickname, ElementType strength, ElementType weakness)
     {
         Nickname = nickname;
         Strength = strength;
@@ -24,7 +23,7 @@ public abstract class Pokemon
     }
 
     /// <summary>
-    /// Abstract method: every subclass must implement its own BattleCry!
+    /// Abstract battle cry method that each subclass overrides.
     /// </summary>
     public abstract void BattleCry();
 }

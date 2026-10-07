@@ -2,22 +2,15 @@ namespace PokemonBattleSimulator;
 
 /// <summary>
 /// Charmander subclass of Pokemon.
-/// 
-/// Requirements:
-/// - Inherits from abstract Pokemon base class.
-/// - Calls the parent constructor (: base).
-/// - Strength is Fire, Weakness is Water.
-/// - Overrides the abstract BattleCry method.
+/// Inherits from Pokemon and initializes with ElementType enums.
 /// </summary>
 public class Charmander : Pokemon
 {
-    // Subclass constructor using the parent constructor (: base)
-    public Charmander(string nickname, string strength = "Fire", string weakness = "Water") 
-        : base(nickname, strength, weakness)
+    public Charmander(string nickname) 
+        : base(nickname, ElementType.Fire, ElementType.Water)
     {
     }
 
-    // Overridden BattleCry method (Polymorphism)
     public override void BattleCry()
     {
         Console.WriteLine($"{Nickname}!");
