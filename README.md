@@ -26,16 +26,20 @@ This project is built incrementally following the school assignments, focusing o
 ```
 PokemonBattleSimulator/
 │
-├── Charmander.cs                 # Charmander class with fields, constructor & BattleCry()
-├── Pokeball.cs                   # Pokeball class (composition: holds a Charmander)
-├── Trainer.cs                    # Trainer class (composition: List<Pokeball> belt, exception handling)
+├── Pokemon.cs                    # Abstract base class with fields, constructor & abstract BattleCry()
+├── Charmander.cs                 # Charmander subclass (: Pokemon)
+├── Squirtle.cs                   # Squirtle subclass (: Pokemon)
+├── Bulbasaur.cs                  # Bulbasaur subclass (: Pokemon)
+├── Pokeball.cs                   # Pokeball class (can hold any Pokemon)
+├── Trainer.cs                    # Trainer class (holds belt with 2 of each of the 3 Pokemon)
 ├── Program.cs                    # Main entry point with the interactive battle loop
 │
 ├── Cheatsheets/
 │   ├── Cheatsheet_Opdracht_1.md      # Opdracht 1 Cheatsheet (English, 100+ words)
-│   ├── Cheatsheet_Opdracht_1_NL.md   # Opdracht 1 Cheatsheet (Nederlands - voorbereiding mondeling)
+│   ├── Cheatsheet_Opdracht_1_NL.md   # Opdracht 1 Cheatsheet (Nederlands)
 │   ├── Cheatsheet_Opdracht_2.md      # Opdracht 2 Cheatsheet (English, 100+ words)
-│   └── Cheatsheet_Opdracht_2_NL.md   # Opdracht 2 Cheatsheet (Nederlands - voorbereiding mondeling)
+│   ├── Cheatsheet_Opdracht_2_NL.md   # Opdracht 2 Cheatsheet (Nederlands)
+│   └── Cheatsheet_Opdracht_3.md      # Opdracht 3 Cheatsheet (English, 100+ words)
 │
 ├── PokemonBattleSimulator.csproj     # .NET 10 project file
 ├── PokemonBattleSimulator.slnx       # Visual Studio solution file
@@ -62,16 +66,17 @@ dotnet run
 
 | Concept | Explanation | Where to find it |
 | :--- | :--- | :--- |
-| **Class vs Object** | `Charmander` is the blueprint class; `new Charmander(...)` instantiates an object in memory. | `Charmander.cs` |
-| **Composition** | An object containing other objects as fields/properties. | `Trainer` *has-a* `List<Pokeball>`, and `Pokeball` *has-a* `Charmander`. |
+| **Abstract Class & Inheritance** | `Pokemon` is an abstract base class; `Charmander`, `Squirtle`, and `Bulbasaur` inherit from it using `: base(...)`. | `Pokemon.cs`, `Charmander.cs`, etc. |
+| **Polymorphism** | `BattleCry()` is declared abstract and overridden in each subclass. `Pokeball` and `Trainer` work with generic `Pokemon`. | `Pokemon.cs`, `Pokeball.cs`, `Program.cs` |
+| **Composition** | An object containing other objects as fields/properties. | `Trainer` *has-a* `List<Pokeball>`, and `Pokeball` *has-a* `Pokemon`. |
 | **Collections (`List<T>`)** | Dynamic list used instead of fixed arrays for the trainer's belt. | `Trainer.cs` (`List<Pokeball> Belt`) |
 | **Exception Handling** | Using `throw`, `try`, and `catch` to handle illegal operations. | `Trainer.cs` throws when belt > 6; `Program.cs` catches it. |
-| **Encapsulation** | Controlling access to internal state via properties with `private set`. | `Pokeball.cs` and `Trainer.cs` |
 
 ---
 
 ## 📚 Cheatsheets & Theory
 
-Detailed explanations and required question answers are available in both English (for assignment hand-in) and Dutch (for oral exams):
-- 🇬🇧 [Opdracht 1 Cheatsheet (EN)](Cheatsheets/Cheatsheet_Opdracht_1.md) | 🇳🇱 [Opdracht 1 Cheatsheet (NL)](Cheatsheets/Cheatsheet_Opdracht_1_NL.md)
-- 🇬🇧 [Opdracht 2 Cheatsheet (EN)](Cheatsheets/Cheatsheet_Opdracht_2.md) | 🇳🇱 [Opdracht 2 Cheatsheet (NL)](Cheatsheets/Cheatsheet_Opdracht_2_NL.md)
+Detailed English explanations (min. 100 words each for assignment hand-in):
+- 🇬🇧 [Opdracht 1 Cheatsheet (EN)](Cheatsheets/Cheatsheet_Opdracht_1.md)
+- 🇬🇧 [Opdracht 2 Cheatsheet (EN)](Cheatsheets/Cheatsheet_Opdracht_2.md)
+- 🇬🇧 [Opdracht 3 Cheatsheet (EN)](Cheatsheets/Cheatsheet_Opdracht_3.md)
