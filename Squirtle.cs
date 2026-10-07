@@ -1,18 +1,18 @@
 namespace PokemonBattleSimulator;
 
 /// <summary>
-/// Charmander subclass of Pokemon.
+/// Squirtle subclass of Pokemon.
 /// 
 /// Requirements:
 /// - Inherits from abstract Pokemon base class.
 /// - Calls the parent constructor (: base).
-/// - Strength is Fire, Weakness is Water.
+/// - Strength is Water, Weakness is Leaf.
 /// - Overrides the abstract BattleCry method.
 /// </summary>
-public class Charmander : Pokemon
+public class Squirtle : Pokemon
 {
-    // Subclass constructor using the parent constructor (: base)
-    public Charmander(string nickname, string strength = "Fire", string weakness = "Water") 
+    // Subclass constructor calling the parent constructor (: base)
+    public Squirtle(string nickname, string strength = "Water", string weakness = "Leaf")
         : base(nickname, strength, weakness)
     {
     }

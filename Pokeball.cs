@@ -1,32 +1,28 @@
 namespace PokemonBattleSimulator;
 
 /// <summary>
-/// Opdracht 2: Pokeball class
+/// Pokeball class
 /// 
-/// Requirements:
-/// - The pokeball is empty or it can contain a single charmander.
-/// - The pokeball can be thrown, which opens it up, and releases the charmander.
-/// - The charmander can be returned back to its pokeball, which closes it.
+/// Can hold any Pokemon (Charmander, Squirtle, Bulbasaur) using polymorphism.
 /// </summary>
 public class Pokeball
 {
-    // A pokeball can contain a single Charmander (or null if empty)
-    public Charmander? ContainedPokemon { get; private set; }
+    // A pokeball can contain any Pokemon subclass (or null if empty)
+    public Pokemon? ContainedPokemon { get; private set; }
 
-    // Tracks if the pokeball is currently open or closed
+    // Tracks if the pokeball is open or closed
     public bool IsOpen { get; private set; }
 
-    // Constructor: Can be created empty, or with a Charmander inside
-    public Pokeball(Charmander? charmander = null)
+    public Pokeball(Pokemon? pokemon = null)
     {
-        ContainedPokemon = charmander;
+        ContainedPokemon = pokemon;
         IsOpen = false;
     }
 
     /// <summary>
-    /// Throws the pokeball, opening it and releasing the Charmander inside.
+    /// Throws the pokeball, opening it and releasing the Pokemon inside.
     /// </summary>
-    public Charmander? Throw()
+    public Pokemon? Throw()
     {
         IsOpen = true;
 
@@ -41,9 +37,9 @@ public class Pokeball
     }
 
     /// <summary>
-    /// Returns the Charmander back into the pokeball, closing it again.
+    /// Returns the Pokemon back into the pokeball, closing it again.
     /// </summary>
-    public void Return(Charmander? pokemon = null)
+    public void Return(Pokemon? pokemon = null)
     {
         if (pokemon != null)
         {

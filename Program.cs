@@ -13,7 +13,7 @@ public static class Program
             // 1. The player starts the game.
             try { if (!Console.IsOutputRedirected) Console.Clear(); } catch { }
             Console.WriteLine("=================================================");
-            Console.WriteLine("       POKÉMON BATTLE SIMULATOR - OPDRACHT 2     ");
+            Console.WriteLine("       POKÉMON BATTLE SIMULATOR (OOP EDITION)    ");
             Console.WriteLine("=================================================");
 
             // 2. The player gives a name to the first trainer.
@@ -29,11 +29,10 @@ public static class Program
             Trainer trainer2 = new Trainer(name2);
 
             // Optional demonstration of Error Handling (try-catch with Exception)
-            // Attempting to add a 7th pokeball to prove the restriction works:
             Console.WriteLine("\n[System Check] Testing belt capacity exception handling...");
             try
             {
-                Pokeball extraBall = new Pokeball(new Charmander("Extra", "Fire", "Water"));
+                Pokeball extraBall = new Pokeball(new Charmander("Extra"));
                 trainer1.AddPokeball(extraBall); // Should throw Exception because belt already has 6!
             }
             catch (Exception ex)
@@ -43,36 +42,37 @@ public static class Program
                 Console.ResetColor();
             }
 
-            Console.WriteLine("\nPress Enter to begin the battle round between the two trainers...");
+            Console.WriteLine("\nPress Enter to begin the battle rounds between the two trainers...");
             Console.ReadLine();
 
-            // 10. Repeat 4 to 9 until all pokeballs have been used by both trainers (6 pokeballs).
+            // Loop through all 6 Pokeballs on the belt
+            // (2 Charmanders, 2 Squirtles, 2 Bulbasaurs)
             for (int i = 0; i < 6; i++)
             {
                 Console.WriteLine($"\n================== [ ROUND {i + 1} / 6 ] ==================");
 
                 // 4. The first trainer throws the pokeball on its belt.
-                Charmander? pokemon1 = trainer1.ThrowPokeball(i);
+                Pokemon? pokemon1 = trainer1.ThrowPokeball(i);
 
-                // 5. The pokeball released the charmander and charmander does its battle cry.
+                // 5. The pokeball released the pokemon and it does its battle cry (Polymorphism!).
                 if (pokemon1 != null)
                 {
                     pokemon1.BattleCry();
                 }
 
                 // 6. The second trainer throws the pokeball on its belt.
-                Charmander? pokemon2 = trainer2.ThrowPokeball(i);
+                Pokemon? pokemon2 = trainer2.ThrowPokeball(i);
 
-                // 7. The pokeball released the charmander and charmander does its battle cry.
+                // 7. The pokeball released the pokemon and it does its battle cry (Polymorphism!).
                 if (pokemon2 != null)
                 {
                     pokemon2.BattleCry();
                 }
 
-                // 8. The first trainer returns the charmander back to its pokeball.
+                // 8. The first trainer returns the pokemon back to its pokeball.
                 trainer1.ReturnPokemon(i);
 
-                // 9. The second trainer returns the charmander back to its pokeball.
+                // 9. The second trainer returns the pokemon back to its pokeball.
                 trainer2.ReturnPokemon(i);
 
                 Console.WriteLine("-------------------------------------------------");

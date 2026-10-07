@@ -1,20 +1,18 @@
 namespace PokemonBattleSimulator;
 
 /// <summary>
-/// Opdracht 2: Trainer class
+/// Trainer class
 /// 
 /// Requirements:
-/// - Trainer has a Name and a Belt with six pokeballs (each containing a Charmander).
-/// - Belt MUST be a List<Pokeball>, NOT an array.
-/// - If more than 6 pokeballs are added, throw an Exception!
-/// - Error handling using try and catch.
-/// - Methods to throw a pokeball and return a pokemon.
+/// - Has a name and a belt with 6 pokeballs: 2 of each of the 3 pokemon (Charmander, Squirtle, Bulbasaur).
+/// - Belt is a List<Pokeball>.
+/// - Throws an exception if more than 6 pokeballs are on the belt.
 /// </summary>
 public class Trainer
 {
     public string Name { get; set; }
 
-    // Belt MUST be a List<Pokeball> (Composition: Trainer HAS-A List of Pokeballs)
+    // Belt containing 6 Pokeballs
     public List<Pokeball> Belt { get; private set; } = new List<Pokeball>();
 
     public Trainer(string name)
@@ -24,21 +22,23 @@ public class Trainer
     }
 
     /// <summary>
-    /// Initializes the belt with exactly 6 Pokeballs, each containing a Charmander.
-    /// Uses try-catch to demonstrate error handling with Exceptions.
+    /// Initializes the belt with two of each of the three Pokémon (6 total).
     /// </summary>
     private void InitializeBelt()
     {
         try
         {
-            for (int i = 1; i <= 6; i++)
-            {
-                // Create a Charmander for each Pokeball
-                Charmander charmander = new Charmander($"{Name}'s Charmander #{i}", "Fire", "Water");
-                Pokeball pokeball = new Pokeball(charmander);
+            // 2 Charmanders
+            AddPokeball(new Pokeball(new Charmander($"{Name}'s Charmander #1")));
+            AddPokeball(new Pokeball(new Charmander($"{Name}'s Charmander #2")));
 
-                AddPokeball(pokeball);
-            }
+            // 2 Squirtles
+            AddPokeball(new Pokeball(new Squirtle($"{Name}'s Squirtle #1")));
+            AddPokeball(new Pokeball(new Squirtle($"{Name}'s Squirtle #2")));
+
+            // 2 Bulbasaurs
+            AddPokeball(new Pokeball(new Bulbasaur($"{Name}'s Bulbasaur #1")));
+            AddPokeball(new Pokeball(new Bulbasaur($"{Name}'s Bulbasaur #2")));
         }
         catch (Exception ex)
         {
@@ -47,7 +47,7 @@ public class Trainer
     }
 
     /// <summary>
-    /// Adds a Pokeball to the belt. Throws an exception if the belt already has 6 Pokeballs.
+    /// Adds a Pokeball to the belt. Throws an exception if belt has more than 6.
     /// </summary>
     public void AddPokeball(Pokeball pokeball)
     {
@@ -60,9 +60,9 @@ public class Trainer
     }
 
     /// <summary>
-    /// Throws the pokeball at the specified belt index (0-5).
+    /// Throws the pokeball at the specified index and releases the Pokemon.
     /// </summary>
-    public Charmander? ThrowPokeball(int index)
+    public Pokemon? ThrowPokeball(int index)
     {
         if (index < 0 || index >= Belt.Count)
         {
@@ -75,7 +75,7 @@ public class Trainer
     }
 
     /// <summary>
-    /// Returns the pokemon back into the pokeball at the specified index.
+    /// Returns the Pokemon into the pokeball at the specified index.
     /// </summary>
     public void ReturnPokemon(int index)
     {
